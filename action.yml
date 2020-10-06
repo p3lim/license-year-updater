@@ -10,5 +10,5 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: python3 update.py ${{ inputs.files }}
+    - run: python3 $GITHUB_ACTION_PATH/update.py ${{ inputs.files }}
       shell: bash
