@@ -38,3 +38,49 @@ python3 update.py LICENSE.txt LICENSE_2.txt ...
 ```
 
 You can specify as many files you want.
+
+### GitHub Action
+
+This is an example workflow that will do the following:
+- check out the project
+- use this script as an action, passing it a license file
+- create a pull request
+
+This will occur on January 1st every year at 03:00.
+
+```yaml
+name: Update copyright year in license file
+
+on:
+  schedule:
+    - cron: '0 3 1 1 *'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v2
+
+      - name: Update license year
+        uses: p3lim/license-year-updater@v1
+        with:
+          args: LICENSE.txt
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: Update license
+          commit-message: Update license
+          branch: update-license
+          delete-branch: true
+```
+
+If you don't want to wait for Jan 1st every year and would like to run this action immediately, you can manually trigger it with `workflow_dispatch` in your workflow:
+
+```yaml
+on:
+  workflow_dispatch:
+```
+
+With this you can trigger the workflow manually from the workflow page, see [this blog post](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) for more information.

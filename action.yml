@@ -1,0 +1,14 @@
+name: License year updater
+description: Updates the year in license files
+branding:
+  icon: calendar
+  color: white
+inputs:
+  args:
+    description: Space-separated list of license files to update
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: python3 update.py $@
+      shell: bash
