@@ -4,11 +4,11 @@ branding:
   icon: calendar
   color: white
 inputs:
-  args:
+  files:
     description: Space-separated list of license files to update
     required: true
 runs:
   using: composite
   steps:
-    - run: python3 update.py $@
+    - run: python3 update.py ${{ inputs.files }}
       shell: bash
