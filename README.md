@@ -63,7 +63,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Update license year
-        uses: p3lim/license-year-updater@v2
+        uses: p3lim/license-year-updater@v3
         with:
           files: LICENSE.txt
 
