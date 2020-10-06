@@ -65,7 +65,7 @@ jobs:
       - name: Update license year
         uses: p3lim/license-year-updater@v1
         with:
-          args: LICENSE.txt
+          files: LICENSE.txt
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
