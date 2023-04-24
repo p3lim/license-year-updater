@@ -5,10 +5,10 @@ branding:
   color: white
 inputs:
   files:
-    description: Space-separated list of license files to update
+    description: Multiline string of license files to update
     required: true
 runs:
   using: composite
   steps:
-    - run: python3 $GITHUB_ACTION_PATH/update.py ${{ inputs.files }}
+    - run: python3 $GITHUB_ACTION_PATH/update.py -f "${{ inputs.files }}"
       shell: bash
