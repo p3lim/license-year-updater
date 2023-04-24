@@ -17,7 +17,7 @@ parser.add_argument('-e', '--exclude', help='Multiline string of words in author
 args = parser.parse_args()
 
 paths = []
-for line in iter(args.files.splitlines()):
+for line in iter(args.files.replace('\\n', '\n').splitlines()):
 	if line != '':
 		if not os.path.isfile(line):
 			print(f'file not found at path "{line}"')
@@ -29,7 +29,7 @@ for line in iter(args.files.splitlines()):
 			paths.append(line)
 
 excludes = []
-for line in iter((args.exclude or '').splitlines()):
+for line in iter((args.exclude or '').replace('\\n', '\n').splitlines()):
 	if line != '':
 		if line in excludes:
 			print(f'duplicate exclude "{line}"')
