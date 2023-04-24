@@ -31,15 +31,54 @@ Example 3 - multiple copyright holders:
  of this software and associated documentation files (the "Software"), to deal
 ```
 
-### Usage:
+## Usage
 
 ```bash
-python3 update.py LICENSE.txt LICENSE_2.txt ...
+$ python3 update.py --help
+usage: update.py [OPTION]
+
+Updates license file(s) to the current year.
+
+options:
+  -h,--help             show this help message and exit
+  -f,--files FILES      multiline string of file paths
+  -e,--exclude EXCLUDE  multiline string of words in author to exclude
 ```
 
-You can specify as many files you want.
+#### Files
 
-### GitHub Action
+To pass it multiple files use `update.py -f 'file1.txt\nfile2.txt'`.
+
+#### Exclude option
+
+The `exclude` option lets you select not to update the year for words matching certain authors.
+
+Given this example:
+```
+Copyright (c) 2015-2018 John Doe <jdoe@example.com>
+Copyright (c) 2017-2018 Philip J. Fry <pfry@example.com>
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+```
+
+You want to update the year for all authors, except "John Doe".  
+Invoke the script excluding parts of the author: `update.py -f license.txt -e 'jdoe@example.com'`
+
+The result would be:
+```diff
+Copyright (c) 2015-2018 John Doe <jdoe@example.com>
+-Copyright (c) 2017-2018 Philip J. Fry <pfry@example.com>
++Copyright (c) 2017-2023 Philip J. Fry <pfry@example.com>
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+```
+
+You can be as verbose as you want, targeting domains (`-e 'example.com'`) or names (`-e john`).  
+To pass multiple filters separate them by newline: `-e 'john\nalice'`
+
+## GitHub Action
 
 This is an example workflow that will do the following:
 - check out the project
@@ -65,7 +104,9 @@ jobs:
       - name: Update license year
         uses: p3lim/license-year-updater@v1
         with:
-          files: LICENSE.txt
+          files: |
+            license1.txt
+            license2.txt
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
