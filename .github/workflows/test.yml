@@ -22,4 +22,4 @@ jobs:
             tests/not_license.txt
 
       - name: Show diff
-        run: git diff tests/
+        run: git diff --color=always tests/
