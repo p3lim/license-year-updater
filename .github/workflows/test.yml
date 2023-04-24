@@ -1,0 +1,25 @@
+name: Run action on test files
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v2
+
+      - name: Update license year
+        uses: p3lim/license-year-updater@master
+        with:
+          files: |
+            tests/license_many.txt
+            tests/license_nothing.txt
+            tests/license_year.txt
+            tests/license_years.txt
+            tests/not_license.txt
+
+      - name: Show diff
+        run: git diff tests/
