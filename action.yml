@@ -7,8 +7,11 @@ inputs:
   files:
     description: Multiline string of license files to update
     required: true
+  exclude:
+    description: Multiline string of words in author to exclude
+    required: false
 runs:
   using: composite
   steps:
-    - run: python3 $GITHUB_ACTION_PATH/update.py -f "${{ inputs.files }}"
+    - run: python3 $GITHUB_ACTION_PATH/update.py -f "${{ inputs.files }}" -e "${{ inputs.exclude }}"
       shell: bash
