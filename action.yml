@@ -13,5 +13,5 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: python3 $GITHUB_ACTION_PATH/update.py -f "${{ inputs.files }}" -e "${{ inputs.exclude }}"
+    - run: python3 "$GITHUB_ACTION_PATH/update.py" -f "${{ inputs.files }}" -e "${{ inputs.exclude }}"
       shell: bash
