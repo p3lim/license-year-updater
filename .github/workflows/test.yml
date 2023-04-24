@@ -20,6 +20,8 @@ jobs:
             tests/license_year.txt
             tests/license_years.txt
             tests/not_license.txt
+          exclude: |
+            leela
 
       - name: Show diff
         run: git diff --color=always tests/
