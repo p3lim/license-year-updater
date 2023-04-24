@@ -32,7 +32,7 @@ NEW_YEAR = datetime.now().year
 
 for line in fileinput.input(files=paths, inplace=True):
 	match = PATTERN.match(line)
-	if match:
+	if match and match.group(2) != str(NEW_YEAR):
 		sys.stdout.write(f'{match.group(1)} {match.group(2)[:4]}-{NEW_YEAR} {match.group(3)}\n')
 	else:
 		sys.stdout.write(line)
