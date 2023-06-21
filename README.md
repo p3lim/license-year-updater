@@ -62,7 +62,7 @@ Copyright (c) 2017-2018 Philip J. Fry <pfry@example.com>
  of this software and associated documentation files (the "Software"), to deal
 ```
 
-You want to update the year for all authors, except "John Doe".  
+You want to update the year for all authors, except "John Doe".
 Invoke the script excluding parts of the author: `update.py -f license.txt -e 'jdoe@example.com'`
 
 The result would be:
@@ -75,7 +75,7 @@ Copyright (c) 2015-2018 John Doe <jdoe@example.com>
  of this software and associated documentation files (the "Software"), to deal
 ```
 
-You can be as verbose as you want, targeting domains (`-e 'example.com'`) or names (`-e john`).  
+You can be as verbose as you want, targeting domains (`-e 'example.com'`) or names (`-e john`).
 To pass multiple filters separate them by newline: `-e 'john\nalice'`
 
 ## GitHub Action
@@ -99,17 +99,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Update license year
-        uses: p3lim/license-year-updater@v1
+        uses: p3lim/license-year-updater@v2
         with:
           files: |
             license1.txt
             license2.txt
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
           title: Update license
           commit-message: Update license
