@@ -43,6 +43,7 @@ options:
   -h,--help             show this help message and exit
   -f,--files FILES      multiline string of file paths
   -e,--exclude EXCLUDE  multiline string of words in author to exclude
+  -r,--no-range         only keep last year instead of range of years
 ```
 
 #### Files
@@ -125,3 +126,5 @@ on:
 ```
 
 With this you can trigger the workflow manually from the workflow page, see [this blog post](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) for more information.
+
+See action.yml for more options.
