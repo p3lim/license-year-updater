@@ -10,6 +10,9 @@ inputs:
   exclude:
     description: Multiline string of words in author to exclude
     required: false
+  no_range:
+    description: Only keep last year instead of range of years
+    required: false
 runs:
   using: composite
   steps:
