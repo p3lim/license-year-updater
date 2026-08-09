@@ -38,7 +38,7 @@ for line in iter((args.exclude or '').replace('\\n', '\n').splitlines()):
 		else:
 			excludes.append(line.lower())
 
-PATTERN = re.compile(r'^([Cc]opyright.+) ([0-9-]{4,9}) (.+)$')
+PATTERN = re.compile(r'^(\W*[Cc]opyright.+) ([0-9-]{4,9}) (.+)$')
 NEW_YEAR = datetime.now().year
 
 for line in fileinput.input(files=paths, inplace=True):
