@@ -100,7 +100,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Update license year
         uses: p3lim/license-year-updater@v2
@@ -110,7 +110,7 @@ jobs:
             license2.txt
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           title: Update license
           commit-message: Update license
